@@ -7,6 +7,8 @@ public class BossKoBoss : MonoBehaviour
     public int stateIndex;
     public float Health=100f;
 
+    public WeaponSystem[] WeaponSystems;
+
     [SerializeField] public float[] checkpoints;
 
     public UnitStateMachine chillState = new BossPlayState();
