@@ -520,6 +520,7 @@ MonoBehaviour:
   moveSpeed: {x: 0, y: 0.5}
   offset: {x: 0, y: 0}
   spriteMaterial: {fileID: 0}
+  scroll: 0
 --- !u!212 &839960019
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -957,6 +958,7 @@ MonoBehaviour:
   moveSpeed: {x: 0, y: 0.2}
   offset: {x: 0, y: 0}
   spriteMaterial: {fileID: 0}
+  scroll: 0
 --- !u!212 &1267165073
 SpriteRenderer:
   m_ObjectHideFlags: 0

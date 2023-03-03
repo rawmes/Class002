@@ -6,11 +6,11 @@ using UnityEngine;
 public class BossPlayState : UnitStateMachine
 {
     public float firingSpeed = 2f;
-    float timeKeeper;
-    bool cinematic = true;
+    float timeKeeper=0;
+    public bool cinematic = true;
     public float bossSpeed=0.2f;
     float targetPos;
-    Vector3 startPos;
+    public Vector3 startPos;
     public override void EnterState(BossKoBoss boss)
     {
         Debug.Log("I AM ALIVEE!!!!");
@@ -38,7 +38,7 @@ public class BossPlayState : UnitStateMachine
 
         Move(boss);
 
-        Shoot(boss.WeaponSystems); // here 2f ~ 2s .. future me ko problem.. or sir ko
+        Shoot(boss.WeaponSystems); 
         
         
 

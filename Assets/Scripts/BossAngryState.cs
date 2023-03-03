@@ -6,7 +6,7 @@ public class BossAngryState : UnitStateMachine
 {
     public override void EnterState(BossKoBoss boss)
     {
-        Debug.Log("Furios but not fast");
+        ActivateWeapons(boss);
     }
 
     public override void ExitState(BossKoBoss boss)
@@ -17,5 +17,20 @@ public class BossAngryState : UnitStateMachine
     public override void UpdateState(BossKoBoss boss)
     {
 
+    }
+
+    public void ActivateWeapons(BossKoBoss boss)
+    {
+        for (int i = 0; i < boss.WeaponSystems.Length; i++)
+        {
+            if (i == boss.iterator)
+            {
+                boss.WeaponSystems[i].activated = true;
+            }
+            else
+            {
+                boss.WeaponSystems[(int)i].activated = false;
+            }
+        }
     }
 }
