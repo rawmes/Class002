@@ -6,11 +6,13 @@ public class BossKoBoss : MonoBehaviour
 {
     public int stateIndex;
     public float Health=100f;
+    public bool activated = false;
 
     public WeaponSystem[] WeaponSystems;
 
     [SerializeField] public float[] checkpoints;
 
+    public UnitStateMachine disabledState = new BossDisabledState();
     public UnitStateMachine chillState = new BossPlayState();
     public UnitStateMachine annoyedState = new BossAnnoyedState();
     public UnitStateMachine angryState = new BossAngryState();
@@ -22,7 +24,7 @@ public class BossKoBoss : MonoBehaviour
 
     private void Start()
     {
-        SwitchState(chillState);
+        SwitchState(disabledState);
     }
 
     private void Update()

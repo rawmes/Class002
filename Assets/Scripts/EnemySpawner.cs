@@ -17,6 +17,8 @@ public class EnemySpawner : MonoBehaviour
     bool spawnning=false;
     bool allSpawned=false;
 
+    [SerializeField] BossKoBoss bossMan;
+
     private void Awake()
     {
         enemyIndex = wave[currentWave].enemyPrefabs.Length;
@@ -42,9 +44,11 @@ public class EnemySpawner : MonoBehaviour
             var newEnemy = wave[currentWave].enemyPrefabs[enemyCounter];
 
             var currentEnemy = Instantiate(newEnemy);
-            EnemyControls currenyEnemyControls = currentEnemy.GetComponent<EnemyControls>();
-            newEnemy.GetComponent<EnemyControls>().path = wave[currentWave].pathContainer;
-            currenyEnemyControls.damp = Random.Range(0.2f, 1f);
+            EnemyControls currentEnemyControls = currentEnemy.GetComponent<EnemyControls>();
+            
+            currentEnemyControls.damp = Random.Range(0.2f, 1f);
+            currentEnemyControls.path = wave[currentWave].pathContainer;
+            currentEnemyControls.Initialize();
             enemyCounter++;
         }
         else
@@ -58,20 +62,32 @@ public class EnemySpawner : MonoBehaviour
 
     void MonitorWave()
     {
+        switch (currentWave)
+        {
+            case 0:
+                SpawnEnemy();
+                break;
+            case 1:
+                SpawnEnemy();
+                break;
+            case 2:
+                bossMan.activated = true;
+                break;
+        }
 
-        if(activeEnemies <= 0 && allSpawned==true)
-        { 
-            
-            if (wave.Length > currentWave+1)
+        
+    }
+    private void SpawnEnemy()
+    {
+        if (activeEnemies <= 0 && allSpawned == true)
+        {
+            currentWave++;
+            if (wave.Length > currentWave + 1)
             {
-                
-                currentWave++;
                 enemyCounter = 0;
                 allSpawned = false;
                 enemyIndex = wave[currentWave].enemyPrefabs.Length;
             }
         }
-    }
-
-    
+    }    
 }
