@@ -7,7 +7,7 @@ public class WeaponSystem : MonoBehaviour
 {
     [SerializeField] GameObject[] barrels;
     [SerializeField] GameObject bullet;
-    [SerializeField] float forceValue;
+    [SerializeField] public float forceValue;
     [SerializeField] public bool activated;
     
     public void Fire()

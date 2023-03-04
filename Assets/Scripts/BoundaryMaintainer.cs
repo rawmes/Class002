@@ -40,4 +40,15 @@ public class BoundaryMaintainer : MonoBehaviour
         width = 1 / (cam.WorldToViewportPoint(new Vector3(1, 1, 0)).x - 0.5f);
         height = 1 / (cam.WorldToViewportPoint(new Vector3(1, 1, 0)).y - 0.5f);
     }
+
+  
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Projectile")
+        {
+            Destroy(collision.gameObject);
+        }
+    }
+    
+    
 }

@@ -26,7 +26,7 @@ public class BossAnnoyedState : UnitStateMachine
 
     public override void UpdateState(BossKoBoss boss)
     {
-        if (boss.Health < boss.checkpoints[boss.iterator])
+        if (boss.currentHealth < boss.checkpoints[boss.iterator])
         {
             boss.SwitchState(boss.angryState);  
         }

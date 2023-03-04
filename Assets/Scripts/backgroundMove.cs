@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class backgroundMove : MonoBehaviour
+public class BackgroundMove : MonoBehaviour
 {
     [SerializeField] Vector2 moveSpeed;
     [SerializeField] Vector2 offset;
     [SerializeField] Material spriteMaterial;
+    [SerializeField] Material fogMat;
     public bool scroll;
     private void Start()
     {

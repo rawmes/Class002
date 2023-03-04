@@ -16,6 +16,7 @@ public class EnemySpawner : MonoBehaviour
     public int currentWave = 0;
     bool spawnning=false;
     bool allSpawned=false;
+    bool nextBossIsFriendly= false;
 
     [SerializeField] BossKoBoss bossMan;
 
@@ -46,8 +47,8 @@ public class EnemySpawner : MonoBehaviour
             var currentEnemy = Instantiate(newEnemy);
             EnemyControls currentEnemyControls = currentEnemy.GetComponent<EnemyControls>();
             
-            currentEnemyControls.damp = Random.Range(0.2f, 1f);
-            currentEnemyControls.path = wave[currentWave].pathContainer;
+            currentEnemyControls.damp = Random.Range(1f, 2f);
+            currentEnemyControls.side = wave[currentWave].side;
             currentEnemyControls.Initialize();
             enemyCounter++;
         }
@@ -72,6 +73,7 @@ public class EnemySpawner : MonoBehaviour
                 break;
             case 2:
                 bossMan.activated = true;
+                
                 break;
         }
 
@@ -82,7 +84,7 @@ public class EnemySpawner : MonoBehaviour
         if (activeEnemies <= 0 && allSpawned == true)
         {
             currentWave++;
-            if (wave.Length > currentWave + 1)
+            if (wave.Length >= currentWave + 1)
             {
                 enemyCounter = 0;
                 allSpawned = false;

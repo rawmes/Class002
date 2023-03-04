@@ -11,6 +11,7 @@ public class BossPlayState : UnitStateMachine
     public float bossSpeed=0.2f;
     float targetPos;
     public Vector3 startPos;
+    
     public override void EnterState(BossKoBoss boss)
     {
         Debug.Log("I AM ALIVEE!!!!");
@@ -18,6 +19,7 @@ public class BossPlayState : UnitStateMachine
         ActivateWeapons(boss);
 
         startPos = new Vector3(0f,Camera.main.orthographicSize,0f);
+        boss.iterator = 0;
         
     }
 
@@ -31,7 +33,7 @@ public class BossPlayState : UnitStateMachine
     {
         
 
-       if(boss.Health < boss.checkpoints[boss.iterator])
+       if(boss.currentHealth < boss.checkpoints[boss.iterator])
         {
             boss.SwitchState(boss.annoyedState);
         }
@@ -105,7 +107,13 @@ public class BossPlayState : UnitStateMachine
             float height = Camera.main.orthographicSize * 2;
             
             boss.gameObject.transform.position = Vector3.MoveTowards(boss.gameObject.transform.position, startPos, bossSpeed);
-            if (boss.gameObject.transform.position == startPos) cinematic = false;
+            if (boss.gameObject.transform.position == startPos) 
+            { 
+                cinematic = false;
+                boss.healthBar.gameObject.SetActive(true);
+                GameManager.Instance.StartDialogue();
+            }
+            Debug.Log("MOVING");
             targetPos = Camera.main.orthographicSize * Camera.main.aspect;
         }
     }

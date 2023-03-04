@@ -6,6 +6,6 @@ using UnityEngine;
 public class EnemyWave : ScriptableObject
 {
     public GameObject[] enemyPrefabs;
-    public GameObject pathContainer;
+    public float side;
 
 }

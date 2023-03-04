@@ -2,10 +2,14 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerControls : MonoBehaviour
 {
-    public static event UnityAction playerHit;
+    public static event UnityAction playerDies;
+
+    AudioSource playerAudioSource;
+    [SerializeField] AudioClip fireBulletSound;
 
     [SerializeField] private float inputX;
     [SerializeField] private float inputY;
@@ -16,9 +20,19 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] private float smoothValue;
     public bool paused;
 
+    [SerializeField] WeaponSystem weaponSystem;
+
+    float maxHealth, currentHealth;
+    [SerializeField] Image healthBar;
+
+    public HealthScript healthScript = new HealthScript();
+
     private void Start()
     {
+        playerAudioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
+        maxHealth = GameManager.Instance.playerMaxHealth;
+        healthScript.Initialize(maxHealth, healthBar);
 
     }
     public void OnMove(InputAction.CallbackContext context)
@@ -35,11 +49,22 @@ public class PlayerControls : MonoBehaviour
         {
             Vector3 targetVel = new Vector3(inputX * moveSpeed * Time.fixedDeltaTime, inputY * moveSpeed * Time.fixedDeltaTime, gameObject.transform.position.z);
 
-            rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVel, ref reference, smoothValue);
+            rb.velocity = targetVel; 
         }
         else
         {
             rb.velocity = Vector2.zero;
+        }
+        
+    }
+
+    public void OnFire(InputAction.CallbackContext context)
+    {
+        if (context.action.triggered)
+        {
+            weaponSystem.Fire();
+            playerAudioSource.clip = fireBulletSound;
+            playerAudioSource.Play(); 
         }
         
     }
@@ -52,8 +77,14 @@ public class PlayerControls : MonoBehaviour
 
     }
 
-    public void Ouchie()
+    public void Ouchie(float damage)
     {
-        playerHit?.Invoke();
+        healthScript.Spanked(damage);
+        currentHealth = healthScript.GetCurrentHealth();
+        GameManager.Instance.ChangePlayerHealth(currentHealth);
+        if(healthScript.GetCurrentHealth() <= 0f)
+        {
+            playerDies?.Invoke();
+        }
     }
 }

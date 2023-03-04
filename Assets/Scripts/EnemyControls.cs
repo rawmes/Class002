@@ -2,9 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditorInternal;
+
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
+
 
 public class EnemyControls : MonoBehaviour
 {
@@ -17,6 +17,7 @@ public class EnemyControls : MonoBehaviour
     private Vector3[] positions;
     private Vector3 position;
     public float damp = 0.5f;
+    public float side;
     
 
     private void OnEnable()
@@ -69,22 +70,22 @@ public class EnemyControls : MonoBehaviour
 
     Vector3[] GeneratePosition()
     {
-        Vector3 topLeft, middle, middleRight ,dummyPos;
+        Vector3 startingPoint, middle, endingPoint ,dummyPos;
         float height = Camera.main.orthographicSize;
         float width = Camera.main.orthographicSize * Camera.main.aspect;
 
         
 
 
-        topLeft = new Vector3(width,height+2f,0f);
+        startingPoint = new Vector3(-side*width,height+2f,0f);
         middle= new Vector3(0f, 2f, 0f);
-        middleRight = new Vector3(-width-2f, 2f,0f);
-        dummyPos = new Vector3(-width - 3f, 2f, 0f);
+        endingPoint = new Vector3(side*width-2f, 2f,0f);
+        dummyPos = new Vector3(side * width, 2f, 0f);
 
         Debug.Log("GENERATING pOS");
         
 
-        return new Vector3[] { topLeft,middle,middleRight,dummyPos };
+        return new Vector3[] { startingPoint,middle,endingPoint,dummyPos };
     }
 
     private void OnDisable()
