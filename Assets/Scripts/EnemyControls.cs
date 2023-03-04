@@ -79,7 +79,7 @@ public class EnemyControls : MonoBehaviour
 
         startingPoint = new Vector3(-side*width,height+2f,0f);
         middle= new Vector3(0f, 2f, 0f);
-        endingPoint = new Vector3(side*width-2f, 2f,0f);
+        endingPoint = new Vector3(side*width, 2f,0f);
         dummyPos = new Vector3(side * width, 2f, 0f);
 
         Debug.Log("GENERATING pOS");
