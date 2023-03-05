@@ -5,7 +5,7 @@ using UnityEngine;
 public class BossAnnoyedState : UnitStateMachine
 {
 
-    public float firingSpeed = 0.5f;
+    public float firingSpeed = 0.8f;
     public float bossSpeed = 2f;
     float timeKeeper=0;
     float targetPos;
@@ -68,7 +68,7 @@ public class BossAnnoyedState : UnitStateMachine
 
 
 
-            boss.gameObject.transform.position = Vector3.MoveTowards(boss.gameObject.transform.position, new Vector3(targetPos, height, 0f), bossSpeed);
+            boss.gameObject.transform.position = Vector3.MoveTowards(boss.gameObject.transform.position, new Vector3(targetPos, height, 0f), bossSpeed*Time.deltaTime);
 
 
         }

@@ -45,7 +45,7 @@ public class DialogueManager : MonoBehaviour
             string text = story.Continue();
             
             text = text.Trim();
-            if (ossilator)
+            if (ossilator && text[0] != '<')
             {
                 WriteToScreen(text);
             }
@@ -83,8 +83,16 @@ public class DialogueManager : MonoBehaviour
     }
     void OnClickChoiceButton(int index)
     {
-        story.ChooseChoiceIndex(index);
-        playerTalkSpace.text = currentChoices[index];
+        try
+        {
+            story.ChooseChoiceIndex(index);
+            playerTalkSpace.text = currentChoices[index];
+        }
+        catch
+        {
+            Debug.Log("i fix bug by try /catch .. what about you?");
+        }
+        
         
         StartCoroutine(Delayer(1f));
     }
@@ -122,8 +130,9 @@ public class DialogueManager : MonoBehaviour
         float tiem = 0.02f;
         float anotherTiem = 0.06f;
         float waiter = tiem;
+        string holder = text;
         WaitForSecondsRealtime wait = new WaitForSecondsRealtime(waiter);
-        foreach(char a in text)
+        foreach(char a in holder)
         {
             
             yield return wait;
@@ -144,11 +153,11 @@ public class DialogueManager : MonoBehaviour
         
 
     }
-    void WriteToButtons(string text)
+    void WriteToButtons(string tt)
     {
         
         TextMeshProUGUI currentChoice = choices[choiceIndex].GetComponentInChildren<TextMeshProUGUI>();
-        currentChoice.text = text;
+        currentChoice.text = tt;
         choiceIndex++;
     }
 

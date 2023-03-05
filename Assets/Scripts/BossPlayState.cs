@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class BossPlayState : UnitStateMachine
 {
-    public float firingSpeed = 1f;
+    public float firingSpeed = 1.3f;
     float timeKeeper=0;
     public bool cinematic = true;
-    public float bossSpeed=0.2f;
+    public float bossSpeed=1.8f;
     float targetPos;
     public Vector3 startPos;
     
@@ -98,7 +98,7 @@ public class BossPlayState : UnitStateMachine
             
             
 
-            boss.gameObject.transform.position = Vector3.MoveTowards(boss.gameObject.transform.position, new Vector3(targetPos, height, 0f),bossSpeed);
+            boss.gameObject.transform.position = Vector3.MoveTowards(boss.gameObject.transform.position, new Vector3(targetPos, height, 0f),bossSpeed*Time.deltaTime);
 
 
         }
@@ -106,7 +106,7 @@ public class BossPlayState : UnitStateMachine
         {
             float height = Camera.main.orthographicSize * 2;
             
-            boss.gameObject.transform.position = Vector3.MoveTowards(boss.gameObject.transform.position, startPos, bossSpeed*Time.deltaTime);
+            boss.gameObject.transform.position = Vector3.MoveTowards(boss.gameObject.transform.position, startPos, bossSpeed*5f*Time.deltaTime);
             if (boss.gameObject.transform.position == startPos) 
             { 
                 cinematic = false;

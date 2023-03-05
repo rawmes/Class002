@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BossAngryState : UnitStateMachine
 {
-    public float firingSpeed = 0.2f;
-    public float bossSpeed = 3f;
+    public float firingSpeed = 0.5f;
+    public float bossSpeed = 2f;
     float timeKeeper = 0;
     float targetPos;
     public bool cinematic = true;
@@ -16,7 +16,9 @@ public class BossAngryState : UnitStateMachine
     {
         ActivateWeapons(boss);
         startPos = boss.gameObject.transform.position;
+        
         player =  GameObject.Find("Player").GetComponent<Transform>();
+        targetPos = player.transform.position.x;
     }
 
     public override void ExitState(BossKoBoss boss)
@@ -57,7 +59,11 @@ public class BossAngryState : UnitStateMachine
         {
             float height = Camera.main.orthographicSize;
             float width = Camera.main.orthographicSize * Camera.main.aspect;
-            targetPos = player.position.x;
+            
+            if(boss.gameObject.transform.position.x == targetPos)
+            {
+                targetPos = player.transform.position.x;
+            }
 
 
             if (!goAway)
@@ -67,7 +73,7 @@ public class BossAngryState : UnitStateMachine
             }
             else
             {
-                boss.gameObject.transform.position = Vector3.MoveTowards(boss.gameObject.transform.position, new Vector3(targetPos+2, height+2, 0f), bossSpeed * Time.deltaTime);
+                boss.gameObject.transform.position = Vector3.MoveTowards(boss.gameObject.transform.position, new Vector3(0f, height+2, 0f), bossSpeed * Time.deltaTime);
 
             }
 
