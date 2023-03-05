@@ -12,7 +12,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] AudioClip typingSound;
     AudioSource audioPlayer;
     string[] currentChoices = new string[4];
-    bool ossilator = true;
+    public bool ossilator = true;
     [SerializeField] public bool isWriting=false;
     public static event Action<Story> OnCreateStory;
     [SerializeField] EnemySpawner spawnManager;
@@ -29,7 +29,7 @@ public class DialogueManager : MonoBehaviour
         audioPlayer = GetComponent<AudioSource>();
         dialogueCanvas.gameObject.SetActive(true);
         StartStory();
-        Time.timeScale = 0f;
+        GameManager.Instance.PauseMovements();
     }
     void StartStory()
     {
@@ -83,6 +83,7 @@ public class DialogueManager : MonoBehaviour
     }
     void OnClickChoiceButton(int index)
     {
+        
         try
         {
             story.ChooseChoiceIndex(index);
@@ -105,13 +106,17 @@ public class DialogueManager : MonoBehaviour
     
     public void Choice001()
     {
+        MakeButtonsInactive(choices);
         OnClickChoiceButton(0);
+       
     }
 
     public void Choice002()
     {
+        MakeButtonsInactive(choices);
         ossilator = false;
         OnClickChoiceButton(1);
+        
     }
 
     void WriteToScreen(string text)
@@ -170,10 +175,14 @@ public class DialogueManager : MonoBehaviour
     }
     public void MakeButtonsActive(Button[] objs)
     {
-        foreach(Button obj in objs)
+        if (ossilator)
         {
-            obj.gameObject.SetActive(true);
+            foreach (Button obj in objs)
+            {
+                obj.gameObject.SetActive(true);
+            }
         }
+        
     }
 
     string ChoiceParser(int state,string text)
@@ -222,7 +231,7 @@ public class DialogueManager : MonoBehaviour
 
         GameManager.Instance.bossMood = ossilator;
         ossilator = true;
-        
-        Time.timeScale = 1f;
+
+        GameManager.Instance.UnPauseMovements();
     }
 }

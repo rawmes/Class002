@@ -32,8 +32,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject buttonPrefab;
 
     BossKoBoss currentBoss;
+    
 
     public bool bossMood=false;
+
+    bool paused = false;
 
     
 
@@ -140,5 +143,26 @@ public class GameManager : MonoBehaviour
     {
         sceneManager.LoadMainMenu();
     }
+
+    public void PauseMovements()
+    {
+        paused = true;
+        player.GetComponent<PlayerControls>().paused = true;
+        GameObject thisBoss = GameObject.FindGameObjectWithTag("Boss");
+        
+        
+    }
+    public void UnPauseMovements()
+    {
+        paused = false;
+        player.GetComponent<PlayerControls>().paused = false;
+        
+    }
+
+    public bool GetPausedOrNot()
+    {
+        return paused;
+    }
+   
     
 }

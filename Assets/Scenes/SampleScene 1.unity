@@ -345,7 +345,7 @@ MonoBehaviour:
   stateIndex: 0
   maxHealth: 100
   currentHealth: 0
-  activated: 1
+  activated: 0
   friendlyStatus: 0
   WeaponSystems:
   - {fileID: 1063814475}
@@ -2370,6 +2370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typingSound: {fileID: 8300000, guid: 4efbf39292f9d6c4cb3693fbc203dba1, type: 3}
+  ossilator: 1
   isWriting: 0
   spawnManager: {fileID: 1156627391}
   dialogueCanvas: {fileID: 1746222181}

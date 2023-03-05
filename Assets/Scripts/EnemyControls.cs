@@ -18,6 +18,7 @@ public class EnemyControls : MonoBehaviour
     private Vector3 position;
     public float damp = 0.5f;
     public float side;
+    public bool paused;
     
 
     private void OnEnable()
@@ -39,16 +40,21 @@ public class EnemyControls : MonoBehaviour
 
     private void Update()
     {
-        if(transform.position != position)
+        paused = GameManager.Instance.GetPausedOrNot();
+        if(!paused)
         {
-            transform.position = Vector3.MoveTowards(transform.position, position, damp* Time.deltaTime);
-        }
-        else
-        {
-            GetPath();  
-        }
+            if (transform.position != position)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, position, damp * Time.deltaTime);
+            }
+            else
+            {
+                GetPath();
+            }
 
-        Shoot(weapon);
+            Shoot(weapon);
+        }
+        
 
 
     }

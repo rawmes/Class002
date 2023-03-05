@@ -40,7 +40,12 @@ public class BossPlayState : UnitStateMachine
 
         Move(boss);
 
-        Shoot(boss.WeaponSystems); 
+        if (!GameManager.Instance.GetPausedOrNot())
+        {
+            Shoot(boss.WeaponSystems);
+
+        }
+       
         
         
 

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3159912935496628966}
   m_Layer: 7
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,6 +51,7 @@ MonoBehaviour:
   firingSpeed: 3
   path: {fileID: 0}
   damp: 0.5
+  side: 0
 --- !u!212 &3159912935496628967
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -197,11 +198,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 856fd007f5201ec40947eee477ddc118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameObjects: []
   barrels:
   - {fileID: 3159912936477369231}
   bullet: {fileID: 6482821593733588783, guid: 1e69736b7f1e5744f9f755326740ea6a, type: 3}
   forceValue: 10
   activated: 1
+  maxBullet: 0
+  count: 0
 --- !u!1 &3159912936477369231
 GameObject:
   m_ObjectHideFlags: 0
