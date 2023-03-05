@@ -33,6 +33,7 @@ public class PlayerControls : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         maxHealth = GameManager.Instance.playerMaxHealth;
         healthScript.Initialize(maxHealth, healthBar);
+        weaponSystem.MakeBullet();
 
     }
     public void OnMove(InputAction.CallbackContext context)
@@ -60,9 +61,9 @@ public class PlayerControls : MonoBehaviour
 
     public void OnFire(InputAction.CallbackContext context)
     {
-        if (context.action.triggered)
+        if (context.started && Time.timeScale != 0)            
         {
-            weaponSystem.Fire();
+            weaponSystem.FirePool();
             playerAudioSource.clip = fireBulletSound;
             playerAudioSource.Play(); 
         }

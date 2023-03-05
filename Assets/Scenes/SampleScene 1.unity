@@ -345,7 +345,7 @@ MonoBehaviour:
   stateIndex: 0
   maxHealth: 100
   currentHealth: 0
-  activated: 0
+  activated: 1
   friendlyStatus: 0
   WeaponSystems:
   - {fileID: 1063814475}
@@ -804,6 +804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 856fd007f5201ec40947eee477ddc118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameObjects: []
   barrels:
   - {fileID: 911752210}
   - {fileID: 202158735}
@@ -811,6 +812,7 @@ MonoBehaviour:
   bullet: {fileID: 6482821593733588783, guid: 1e69736b7f1e5744f9f755326740ea6a, type: 3}
   forceValue: 10
   activated: 0
+  maxBullet: 0
 --- !u!4 &423027072
 Transform:
   m_ObjectHideFlags: 0
@@ -1252,12 +1254,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 856fd007f5201ec40947eee477ddc118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameObjects: []
   barrels:
   - {fileID: 1145466020}
   - {fileID: 1260312915}
   bullet: {fileID: 6482821593733588783, guid: 1e69736b7f1e5744f9f755326740ea6a, type: 3}
   forceValue: 10
   activated: 0
+  maxBullet: 0
 --- !u!4 &814450708
 Transform:
   m_ObjectHideFlags: 0
@@ -1308,7 +1312,6 @@ MonoBehaviour:
   moveSpeed: {x: 0, y: 0.3}
   offset: {x: 0, y: 0}
   spriteMaterial: {fileID: 0}
-  fogMat: {fileID: 0}
   scroll: 0
 --- !u!212 &839960019
 SpriteRenderer:
@@ -1830,11 +1833,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 856fd007f5201ec40947eee477ddc118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameObjects: []
   barrels:
   - {fileID: 224533265}
   bullet: {fileID: 6482821593733588783, guid: 1e69736b7f1e5744f9f755326740ea6a, type: 3}
   forceValue: 10
   activated: 0
+  maxBullet: 0
 --- !u!4 &1063814476
 Transform:
   m_ObjectHideFlags: 0
@@ -2562,7 +2567,6 @@ MonoBehaviour:
   moveSpeed: {x: 0, y: 0.2}
   offset: {x: 0, y: 0}
   spriteMaterial: {fileID: 0}
-  fogMat: {fileID: 0}
   scroll: 0
 --- !u!212 &1267165073
 SpriteRenderer:
@@ -2982,11 +2986,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 856fd007f5201ec40947eee477ddc118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameObjects: []
   barrels:
   - {fileID: 884783757}
   bullet: {fileID: 6482821593733588783, guid: 199f1f1b3fa90b8409eea888a4c2208c, type: 3}
   forceValue: -10
   activated: 0
+  maxBullet: 10
 --- !u!1 &1635050324
 GameObject:
   m_ObjectHideFlags: 0
@@ -3151,6 +3157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 856fd007f5201ec40947eee477ddc118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameObjects: []
   barrels:
   - {fileID: 1254176860}
   - {fileID: 1032727379}
@@ -3158,6 +3165,7 @@ MonoBehaviour:
   bullet: {fileID: 6482821593733588783, guid: 1e69736b7f1e5744f9f755326740ea6a, type: 3}
   forceValue: 10
   activated: 0
+  maxBullet: 0
 --- !u!4 &1691487597
 Transform:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ public class BossAnnoyedState : UnitStateMachine
 {
 
     public float firingSpeed = 0.5f;
-    public float bossSpeed = 0.8f;
+    public float bossSpeed = 2f;
     float timeKeeper=0;
     float targetPos;
     public bool cinematic = true;
@@ -76,7 +76,7 @@ public class BossAnnoyedState : UnitStateMachine
         {
             float height = Camera.main.orthographicSize * 2;
 
-            boss.gameObject.transform.position = Vector3.MoveTowards(boss.gameObject.transform.position, startPos, bossSpeed);
+            boss.gameObject.transform.position = Vector3.MoveTowards(boss.gameObject.transform.position, startPos, bossSpeed*Time.deltaTime);
             if (boss.gameObject.transform.position == startPos) cinematic = false;
             targetPos = Camera.main.orthographicSize * Camera.main.aspect;
         }

@@ -5,16 +5,18 @@ using UnityEngine;
 public class BossAngryState : UnitStateMachine
 {
     public float firingSpeed = 0.2f;
-    public float bossSpeed = 0.9f;
+    public float bossSpeed = 3f;
     float timeKeeper = 0;
     float targetPos;
     public bool cinematic = true;
     public Vector3 startPos;
     bool goAway = false;
+    Transform player;
     public override void EnterState(BossKoBoss boss)
     {
         ActivateWeapons(boss);
         startPos = boss.gameObject.transform.position;
+        player =  GameObject.Find("Player").GetComponent<Transform>();
     }
 
     public override void ExitState(BossKoBoss boss)
@@ -55,29 +57,17 @@ public class BossAngryState : UnitStateMachine
         {
             float height = Camera.main.orthographicSize;
             float width = Camera.main.orthographicSize * Camera.main.aspect;
-            if (boss.gameObject.transform.position.x >= width)
-            {
-                targetPos = -width;
-            }
-            else if (boss.gameObject.transform.position.x <= -width)
-            {
-                targetPos = width;
-            }
-            else
-            {
-                
-                if(Random.Range(1,100) < 20) { targetPos = -targetPos; }
-            }
+            targetPos = player.position.x;
 
 
             if (!goAway)
             {
-                boss.gameObject.transform.position = Vector3.MoveTowards(boss.gameObject.transform.position, new Vector3(targetPos, height, 0f), bossSpeed);
+                boss.gameObject.transform.position = Vector3.MoveTowards(boss.gameObject.transform.position, new Vector3(targetPos, height, 0f), bossSpeed * Time.deltaTime);
 
             }
             else
             {
-                boss.gameObject.transform.position = Vector3.MoveTowards(boss.gameObject.transform.position, new Vector3(targetPos+2, height+2, 0f), bossSpeed);
+                boss.gameObject.transform.position = Vector3.MoveTowards(boss.gameObject.transform.position, new Vector3(targetPos+2, height+2, 0f), bossSpeed * Time.deltaTime);
 
             }
 

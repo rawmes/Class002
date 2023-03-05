@@ -2,22 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileEnemy : MonoBehaviour
+public class ProjectileEnemy : Projectile
 {
-    public GameObject shoot_effect;
-    public GameObject hit_effect;
-    public float bulletDamage = 5f;
+    
+    public float bulletDamage;
+
+    
 
 
 
 
 
-    void Start()
+    void OnEnable()
     {
-        //GameObject obj = (GameObject)Instantiate(shoot_effect, transform.position - new Vector3(0, 0, 5), Quaternion.identity); //Spawn muzzle flash
-        //obj.transform.parent = firing_ship.transform;
-        Destroy(gameObject, 1.2f);
-        
+        Invoke("KillMe", 1.5f);
     }
 
 
@@ -26,10 +24,10 @@ public class ProjectileEnemy : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
 
-        //Don't want to collide with the ship that's shooting this thing, nor another projectile.
+       
         if (col.gameObject.tag != "Boss" && col.gameObject.tag != "Projectile" && col.gameObject.tag != "Enemy" && col.gameObject.tag !="Boundary")
         {
-            //Instantiate(hit_effect, transform.position, Quaternion.identity);
+            
             if (col.gameObject.tag != "Player")
             {
                 Destroy(col.gameObject);
@@ -39,16 +37,27 @@ public class ProjectileEnemy : MonoBehaviour
                 col.GetComponent<PlayerControls>().Ouchie(bulletDamage);
             }
 
-            Destroy(gameObject);
+            KillMe();
 
         }
         if (col.gameObject.tag == "Boundary")
         {
-            Destroy(gameObject);
+            KillMe();
 
         }
 
     }
-
+   
+    void KillMe()
+    {
+        if (pooled)
+        {
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
 }

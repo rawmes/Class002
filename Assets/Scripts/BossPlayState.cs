@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BossPlayState : UnitStateMachine
 {
-    public float firingSpeed = 2f;
+    public float firingSpeed = 1f;
     float timeKeeper=0;
     public bool cinematic = true;
     public float bossSpeed=0.2f;
@@ -106,7 +106,7 @@ public class BossPlayState : UnitStateMachine
         {
             float height = Camera.main.orthographicSize * 2;
             
-            boss.gameObject.transform.position = Vector3.MoveTowards(boss.gameObject.transform.position, startPos, bossSpeed);
+            boss.gameObject.transform.position = Vector3.MoveTowards(boss.gameObject.transform.position, startPos, bossSpeed*Time.deltaTime);
             if (boss.gameObject.transform.position == startPos) 
             { 
                 cinematic = false;
