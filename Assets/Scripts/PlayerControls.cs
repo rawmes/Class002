@@ -61,7 +61,7 @@ public class PlayerControls : MonoBehaviour
 
     public void OnFire(InputAction.CallbackContext context)
     {
-        if (context.started && Time.timeScale != 0)            
+        if (context.started && !paused)            
         {
             weaponSystem.FirePool();
             playerAudioSource.clip = fireBulletSound;

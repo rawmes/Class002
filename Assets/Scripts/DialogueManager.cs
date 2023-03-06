@@ -132,8 +132,8 @@ public class DialogueManager : MonoBehaviour
         string old="";
         isWriting = true;
        
-        float tiem = 0.02f;
-        float anotherTiem = 0.06f;
+        float tiem = 0.08f;
+        float anotherTiem = 0.6f;
         float waiter = tiem;
         string holder = text;
         WaitForSecondsRealtime wait = new WaitForSecondsRealtime(waiter);
